@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Flight;
+import com.example.demo.models.Status;
 import com.example.demo.services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,7 +31,8 @@ public class FlightController {
         return flightService.allFlightsOnTime();
     }
     @GetMapping
-    public List<Flight> getAllByStatuses(@RequestParam String p1, @RequestParam String p2){
-        return flightService.allFlightsByStatus(p1, p2);
+    @RequestMapping("/status")
+    public List<Flight> getAllByStatuses(@RequestParam String status1, @RequestParam String status2){
+        return flightService.allFlightsByStatus(status1, status2);
     }
 }

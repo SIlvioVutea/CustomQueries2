@@ -53,7 +53,7 @@ public class FlightService {
     }
 
     public Page<Flight> getAll(int pageNumber, int size){
-        Sort sort = Sort.by(Sort.Direction.ASC, "fromAirports");
+        Sort sort = Sort.by(Sort.Direction.ASC, "fromAirport");
         Pageable page = PageRequest.of(pageNumber, size, sort);
         return repository.findAll(page);
     }
