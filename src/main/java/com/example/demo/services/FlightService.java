@@ -30,30 +30,17 @@ public class FlightService {
 
     public Status generateRandomStatus(){
         Random random = new Random();
-        Status result = Status.ONTIME;
         int status = random.nextInt(1,3);
-        switch (status){
-            case 1:
-                result = Status.ONTIME;
-            case 2:
-                result = Status.DELAYED;
-            case 3:
-                result = Status.CANCELLED;
-        }
-
-        return result;
-    }
-
-    public int checkIfNIsEmpty(Integer n){
-        if (n.describeConstable().isEmpty()){
-            n=100;
-            return n;
-        }
-        return n;
+        return switch (status) {
+            case 1 -> Status.ONTIME;
+            case 2 -> Status.DELAYED;
+            case 3 -> Status.CANCELLED;
+            default -> Status.ONTIME;
+        };
     }
 
     public List<Flight> provisionNFlights(int n){
-        int maxRange = checkIfNIsEmpty(n) + 1;
+        int maxRange = n + 1;
         List<Flight> flights = IntStream.range(1,maxRange)
                 .mapToObj(flight-> new Flight(
                         generateString(10),
@@ -81,7 +68,9 @@ public class FlightService {
         }
         return result;
     }
-    public List<Flight> allFlightsByStatus (Status p1, Status p2){
-        return repository.getFlightsByStatusOrStatus(p1, p2);
+    public List<Flight> allFlightsByStatus (String p1, String p2){
+        Status request1 = Status.convert(p1);
+        Status request2 = Status.convert(p2);
+        return repository.getFlightsByStatusOrStatus(request1, request2);
     }
 }
