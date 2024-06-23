@@ -71,6 +71,6 @@ public class FlightService {
     public List<Flight> allFlightsByStatus (String p1, String p2){
         Status request1 = Status.convert(p1);
         Status request2 = Status.convert(p2);
-        return repository.getFlightsByStatusOrStatus(request1, request2);
+        return repository.findFlightsByStatusOrStatus(request1, request2);
     }
 }
