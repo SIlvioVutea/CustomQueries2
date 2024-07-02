@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, Long> {
     @Query ("select f from flight f where f.status = ?1 or f.status = ?2")

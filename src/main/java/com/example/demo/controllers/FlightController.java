@@ -25,6 +25,7 @@ public class FlightController {
         return flightService.getAll(page, size);
     }
 
+
     @GetMapping
     @RequestMapping("/ontime")
     public List<Flight> getAllOnTime (){
